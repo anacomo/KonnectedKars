@@ -1,5 +1,5 @@
 # KonnectedKars
-## IoT Project
+IoT Project
 
 Componenta echipei:
 - Alexandra Nanu
