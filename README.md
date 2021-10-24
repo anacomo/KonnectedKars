@@ -1,4 +1,4 @@
-# KonnectedKars 🚔
+# Konnected Kars 🚔🚖🚑🚗🚜
 ### IoT Project
 
 Componenta echipei:
