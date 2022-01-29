@@ -22,8 +22,8 @@ def send_signals(client,signalType):
     message = ""
 
     while True:
-        if(signalType == "urgenta"):
-            senzor = random.randint(0,1);
+        if signalType == "urgenta":
+            senzor = random.randint(0, 1)
             if(senzor == 1):
                 message = "A avut loc un accident"
             else:
@@ -32,8 +32,32 @@ def send_signals(client,signalType):
         if(signalType == "dezaburire"):
         if(signalType == "faruri"):
         if(signalType == "franare"):
-        if(signalType == "ambiental"):
         """
+        if signalType == 'dezaburire':
+            indice_refractie = random.uniform(1.45, 1.80)
+            if indice_refractie <= 1.60:
+                message = 'Geamul nu este aburit.'
+            else:
+                message = 'Geamul este aburit!'
+
+        if signalType == 'franare':
+            #  Generam distanta (in metri) pana la urmatoarea masina si viteza curenta
+            distance = random.randint(20, 200)
+            speed = random.randint(10, 250)
+            time_to_brake = distance / speed * 0.75
+
+            if time_to_brake <= 7.0:
+                message = "Frana!"
+            else:
+                message = "Nu frana automat!"
+
+        if signalType == "ambiental":
+            #  Greutatea persoanei din dreapta.
+            senzor = random.randint(35, 120)  
+            message = "S-a asezat o persoana pe scaunul din dreapta. Greutate: %d" % (senzor)
+
+            
+
         new_publish(client,message)
         time.sleep(5)
 
