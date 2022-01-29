@@ -1,0 +1,4 @@
+.idea/
+/connection/__pycache__
+/client/__pycache__
+/brain/__pycache__
