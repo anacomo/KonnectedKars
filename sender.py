@@ -1,6 +1,7 @@
 # python 3.6
 
 import random
+from signal import signal
 import time
 
 from paho.mqtt import client as mqtt_client
@@ -13,6 +14,28 @@ topic = "python/mqtt"
 client_id = f'python-mqtt-{random.randint(0, 1000)}'
 username = 'emqx'
 password = 'public'
+
+def send_signals(client,signalType):
+    """
+        Sends a signal every _RECPIES_SECONDS_DELAY
+    """
+    message = ""
+
+    while True:
+        if(signalType == "urgenta"):
+            senzor = random.randint(0,1);
+            if(senzor == 1):
+                message = "A avut loc un accident"
+            else:
+                message = "Nu a avut loc niciun accident"
+        """
+        if(signalType == "dezaburire"):
+        if(signalType == "faruri"):
+        if(signalType == "franare"):
+        if(signalType == "ambiental"):
+        """
+        new_publish(client,message)
+        time.sleep(5)
 
 def connect_mqtt():
     def on_connect(client, userdata, flags, rc):
@@ -27,6 +50,14 @@ def connect_mqtt():
     client.connect(broker, port)
     return client
 
+def new_publish(client, message):
+    result = client.publish(topic, message)
+    # result: [0, 1]
+    status = result[0]
+    if status == 0:
+        print(f"Sent message `{message}`")
+    else:
+        print(f"Failed to send message to topic {topic}")
 
 def publish(client):
     msg_count = 0
@@ -46,7 +77,7 @@ def publish(client):
 def run():
     client = connect_mqtt()
     client.loop_start()
-    publish(client)
+    send_signals(client,"urgenta")
 
 
 if __name__ == '__main__':

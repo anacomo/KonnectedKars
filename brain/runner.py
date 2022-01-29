@@ -10,7 +10,8 @@ import connection.mqtt_connection as mqtt_connection
 
 
 def start():
+    c = mqtt_connection.Client()
     print("Server started.")
-    mqtt_connection.load_client("server")
-    mqtt_connection.subscribe()
-    mqtt_connection.start_forever()
+    c.load_client("server")
+    c.subscribe()
+    c.start_forever()
