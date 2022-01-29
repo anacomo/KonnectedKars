@@ -6,7 +6,7 @@ import contextlib
 import threading, time, os
 import logging
 
-import common.mqtt_connection as mqtt_connection
+import connection.mqtt_connection as mqtt_connection
 
 
 def start():
