@@ -1,0 +1,335 @@
+{
+    "openapi": "3.0.2",
+    "servers": [
+        {
+            "url": "http://localhost:8000",
+            "description": "Test endpoints"
+        }
+    ],
+    "info": {
+        "title": "FlaskAPI",
+        "version": "2.0.0"
+    },
+    "paths": {
+        "/": {
+            "get": {
+                "summary": "Root",
+                "description": "Root of the project. Prints Hello World",
+                "operationId": "root__get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/weight_sensor": {
+            "post": {
+                "summary": "Weight Sensor",
+                "description": "We receive feedback from the weight sensor.",
+                "operationId": "weight_sensor_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/WeightSensor"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/speed_distance_sensor": {
+            "post": {
+                "summary": "Speed Distance Sensor",
+                "description": "We receive feedback from the distance and speed sensors.",
+                "operationId": "speed_distance_sensor_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SpeedDistanceSensor"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/crash_sensor": {
+            "post": {
+                "summary": "Crash Sensor",
+                "description": "We receive feedback from the distance and crash sensor",
+                "operationId": "crash_sensor_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CrashSensor"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/light_sensor": {
+            "post": {
+                "summary": "Light Sensor",
+                "description": "We receive feedback from the light sensor",
+                "operationId": "light_sensor_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LightSensor"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/demisting_sensor": {
+            "post": {
+                "summary": "Demisting Sensor",
+                "description": "We receive feedback from the demisting sensor",
+                "operationId": "demisting_sensor_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DemistingSensor"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "WeightSensor": {
+                "title": "WeightSensorRequest",
+                "required": [
+                    "weight"
+                ],
+                "type": "object",
+                "properties": {
+                    "weight": {
+                        "title": "Number of kg",
+                        "type": "number"
+                    }
+                },
+                "description": " Send the weight value as a message through MQTT."
+            },
+            "SpeedDistanceSensor": {
+                "title": "SpeedDistanceSensorRequest",
+                "required": [
+                    "speed",
+                    "distance"
+                ],
+                "type": "object",
+                "properties": {
+                    "speed": {
+                        "title": "Current speed of the car",
+                        "type": "number"
+                    },
+                    "distance" : {
+                        "title" : "Distance to the next obstacle",
+                        "type" : "number"
+                    }
+                },
+                "description": " Send the speed and distance values as a message through MQTT."
+            },
+            "CrashSensor": {
+                "title": "CrashSensorRequest",
+                "required": [
+                    "crash_status"
+                ],
+                "type": "object",
+                "properties": {
+                    "crash_status": {
+                        "title": "Status of the car",
+                        "type": "boolean"
+                    }
+                },
+                "description": " Send the crash_status value as a message through MQTT."
+            },
+            "LightSensor": {
+                "title": "LightSensorRequest",
+                "required": [
+                    "luminosity"
+                ],
+                "type": "object",
+                "properties": {
+                    "luminosity": {
+                        "title": "Luminosity value",
+                        "type": "number"
+                    }
+                },
+                "description": " Send the luminosity value as a message through MQTT."
+            },
+            "DemistingSensor": {
+                "title": "DemistingSensorRequest",
+                "required": [
+                    "refraction_index"
+                ],
+                "type": "object",
+                "properties": {
+                    "refraction_index": {
+                        "title": "Refraction index value",
+                        "type": "number"
+                    }
+                },
+                "description": " Send the refraction index value as a message through MQTT."
+            },
+            "HTTPValidationError": {
+                "title": "HTTPValidationError",
+                "type": "object",
+                "properties": {
+                    "detail": {
+                        "title": "Detail",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        }
+                    }
+                }
+            },
+            "ValidationError": {
+                "title": "ValidationError",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "loc": {
+                        "title": "Location",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -5,6 +5,9 @@
     for our (virtual) IoT application to work.
 '''
 
+from tokenize import Double
+
+
 class CarControlUnit:
     
     def __init__(self):
@@ -53,7 +56,7 @@ class CarControlUnit:
         #  TODO: de verificat ca string-ul are formatul legit
 
         if message[1] == '1':
-            weight = int(message[4:])
+            weight = float(message[4:])
             if weight < 60:
                 self.set_ambiental_lights_state('On')
                 print('Am pornit luminile ambientale! Fitza')
@@ -63,8 +66,8 @@ class CarControlUnit:
         elif message[1] == '2':
             #  TODO: implement this
             data = message[4:].split()
-            speed = int(data[0]) * 10 / 36 #transform speed in m/s not km/h
-            distance = int(data[1])
+            speed = float(data[0]) * 10 / 36 #transform speed in m/s not km/h
+            distance = float(data[1])
             if distance/speed < 5:
                 print("Am pus frana (Alexandra nu mai pupa Masseratiuri)")
             else:
@@ -78,7 +81,7 @@ class CarControlUnit:
             else:
                 print("Masina este in stare buna")
         elif message[1] == '4':
-            lighting_coef = int(message[4:])
+            lighting_coef = float(message[4:])
             if lighting_coef < 0.4:
                 self.set_road_lights_state('On')
                 print('Am aprins farurile.')
@@ -86,7 +89,7 @@ class CarControlUnit:
                 self.set_road_lights_state('Off')
                 print('Am stins farurile.')
         elif message[1] == '5':
-            refraction_index = int(message[4:])
+            refraction_index = float(message[4:])
             if refraction_index > 1.90:
                 self.set_demisting_mechanism_state('On')
                 print('Am pornit dezaburirea.')

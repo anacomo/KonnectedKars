@@ -11,7 +11,7 @@ def makeWeightSensorRequest():
 
 def makeSpeedDistanceRequest():
     pload = {'speed' : 50, 'distance' : 10}
-    weighSensorResponse = requests.post('http://127.0.0.1:8000//speed_distance_sensor', data = pload)
+    weighSensorResponse = requests.post('http://127.0.0.1:8000/speed_distance_sensor', data = pload)
     print(weighSensorResponse.text)
 
 def makeCrashSensorRequest():
