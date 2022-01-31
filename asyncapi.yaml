@@ -1,0 +1,132 @@
+asyncapi: 2.2.0
+info:
+  title: MQTT API
+  version: 1.0.0
+  description: "MQTT description"
+  license:
+    name: Apache 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0'
+servers:
+  production:
+    url: 'broker.emqx.io'
+    protocol: mqtt
+    description: Broker used
+defaultContentType: application/json
+channels:
+  'KonnectedKars/weight-sensor-request':
+   publish:
+     message:
+        $ref: '#/components/messages/weight-sensor-request'
+  'KonnectedKars/speed-distance-sensor-request':
+   publish:
+     message:
+        $ref: '#/components/messages/speed-distance-sensor-request'
+  'KonnectedKars/crash-sensor-request':
+   publish:
+     message:
+        $ref: '#/components/messages/crash-sensor-request'
+  'KonnectedKars/light-sensor-request':
+   publish:
+     message:
+        $ref: '#/components/messages/light-sensor-request'
+  'KonnectedKars/demisting-sensor-request':
+   publish:
+     message:
+        $ref: '#/components/messages/demisting-sensor-request'
+components:
+  messages:
+    weight-sensor-request:
+      name: Weight Sensor Request
+      title: Weight Sensor Request
+      summary: >-
+         Send the weight value as a message through MQTT.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/weightSensorPayload'
+    speed-distance-sensor-request:
+      name: Speed Distance Sensor
+      title: Speed Distance Sensor
+      summary: >-
+        Send the speed and distance values as a message through MQTT.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/speedDistanceSensorPayload'
+    crash-sensor-request:
+      name: Crash Sensor
+      title: Crash Sensor
+      summary: >-
+        Send the crash status value as a message through MQTT.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/crashSensorPayload'
+    light-sensor-request:
+      name: Light Sensor
+      title: Light Sensor
+      summary: >-
+        Send the luminosity value as a message through MQTT.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/lightSensorPayload'
+    demisting-sensor-request:
+      name: demisting Sensor
+      title: demisting Sensor
+      summary: >-
+        Send the refraction index value as a message through MQTT.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/demistingSensorPayload'
+  schemas:
+    weightSensorPayload:
+      title: WeightSensorRequest
+      required:
+        - weight
+      type: object
+      properties:
+        weight:
+          title: Number of kg
+          type: number
+      description: ' Send the weight value as a message through MQTT.'
+    speedDistanceSensorPayload:
+      title: SpeedDistanceSensorRequest
+      required:
+        - speed
+        - distance
+      type: object
+      properties:
+        speed:
+          title: Current speed of the car
+          type: number
+        distance:
+          title: Distance to the next obstacle
+          type: number
+      description: ' Send the speed and distance values as a message through MQTT.'
+    crashSensorPayload:
+      title: CrashSensorRequest
+      required:
+        - crash_status
+      type: object
+      properties:
+        crash_status:
+          title: Status of the car
+          type: boolean
+      description: ' Send the crash_status value as a message through MQTT.'
+    lightSensorPayload:
+      title: LightSensorRequest
+      required:
+        - luminosity
+      type: object
+      properties:
+        luminosity:
+          title: Luminosity value
+          type: number
+      description: ' Send the luminosity value as a message through MQTT.'
+    demistingSensorPayload:
+      title: DemistingSensorRequest
+      required:
+        - refraction_index
+      type: object
+      properties:
+        refraction_index:
+          title: Refraction index value
+          type: number
+      description: ' Send the refraction index value as a message through MQTT.'
