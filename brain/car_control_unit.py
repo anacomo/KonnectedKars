@@ -75,7 +75,7 @@ class CarControlUnit:
         elif message[1] == '3':
             #  TODO: implement this
             crashStatus = bool(message[4:])
-            if crashStatus == True:
+            if crashStatus == 1:
                 #TODO call to emergency number
                 print("Masina a avut un accident")
             else:
