@@ -57,31 +57,41 @@ def read_data():
 
     return data_brake, data_damage, data_lighting, data_refraction, data_weight
 
-def makeWeightSensorRequest(data_weight):
+def makeWeightSensorRequest(data_weight, verbose=1):
     pload = {'weight' : random.choice(data_weight)}
-    weighSensorResponse = requests.post('http://127.0.0.1:8000/weight_sensor', data = pload)
-    print(weighSensorResponse.text)
+    response = requests.post('http://127.0.0.1:8000/weight_sensor', data = pload)
+    if verbose:
+        print(response.text)
+    return response.status_code
 
-def makeSpeedDistanceRequest(data_brake):
+def makeSpeedDistanceRequest(data_brake, verbose=1):
     spd = random.choice(data_brake)
     pload = {'speed' : spd[0], 'distance' : spd[1]}
-    weighSensorResponse = requests.post('http://127.0.0.1:8000/speed_distance_sensor', data = pload)
-    print(weighSensorResponse.text)
+    response = requests.post('http://127.0.0.1:8000/speed_distance_sensor', data = pload)
+    if verbose:
+        print(response.text)
+    return response.status_code
 
-def makeCrashSensorRequest(data_damage):
+def makeCrashSensorRequest(data_damage, verbose=1):
     pload = {'crash_status' : random.choice(data_damage)}
-    weighSensorResponse = requests.post('http://127.0.0.1:8000/crash_sensor', data = pload)
-    print(weighSensorResponse.text)
+    response = requests.post('http://127.0.0.1:8000/crash_sensor', data = pload)
+    if verbose:
+        print(response.text)
+    return response.status_code
 
-def makeLightSensorRequest(data_lighting):
+def makeLightSensorRequest(data_lighting, verbose=1):
     pload = {'luminosity' : random.choice(data_lighting)}
-    weighSensorResponse = requests.post('http://127.0.0.1:8000/light_sensor', data = pload)
-    print(weighSensorResponse.text)
+    response = requests.post('http://127.0.0.1:8000/light_sensor', data = pload)
+    if verbose:
+        print(response.text)
+    return response.status_code
 
-def makeDemistingSensorRequest(data_refraction):
+def makeDemistingSensorRequest(data_refraction, verbose=1):
     pload = {'refraction_index' : random.choice(data_refraction)}
-    weighSensorResponse = requests.post('http://127.0.0.1:8000/demisting_sensor', data = pload)
-    print(weighSensorResponse.text)
+    response = requests.post('http://127.0.0.1:8000/demisting_sensor', data = pload)
+    if verbose:
+        print(response.text)
+    return response.status_code
 
 
 def makeRequests(data_brake, data_damage, data_lighting, data_refraction, data_weight):
