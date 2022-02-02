@@ -40,7 +40,7 @@ def read_data():
         parsedLine = f_damage.readline()
         if parsedLine == '':
             break
-        data_damage.append(parsedLine)
+        data_damage.append(parsedLine[-2])
 
     while True:
         timestampLine = f_lighting.readline()

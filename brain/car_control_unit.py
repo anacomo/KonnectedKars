@@ -72,7 +72,7 @@ class CarControlUnit:
             else:
                 print("O lasam pe Alexandra sa puna frana, vedem cum se descurca\n")
         elif message[1] == '3':
-            crashStatus = bool(message[4:])
+            crashStatus = True if message[-1] == '1' else False
             if crashStatus == True:
                 #TODO call to emergency number
                 print("Masina a avut un accident\n")
