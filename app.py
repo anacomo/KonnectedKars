@@ -74,7 +74,7 @@ def create_app():
     #  Send the weight value as a message through MQTT.
     @app.route('/weight_sensor', methods = ['POST'])
     def weight_sensor_feedback():
-        weight = request.form['weight']
+        weight = request.json['weight']
         if not weight:
             return jsonify({'status': 'Weight value is required!'}), 403
         
@@ -90,8 +90,8 @@ def create_app():
     #  Send the speed and distance values through MQTT.
     @app.route('/speed_distance_sensor', methods = ['POST'])
     def speed_distance_sensor_feedback():
-        speed = request.form['speed']
-        distance = request.form['distance']
+        speed = request.json['speed']
+        distance = request.json['distance']
 
         if (not speed) or (not distance):
             return jsonify({'status': 'Speed and distance values are required!'}), 403
@@ -108,7 +108,7 @@ def create_app():
     #  Send the crash value (1 if the car is crashed, 0 otherwise) through MQTT.
     @app.route('/crash_sensor', methods = ['POST'])
     def crash_sensor_feedback():
-        crash_status = request.form['crash_status']
+        crash_status = request.json['crash_status']
 
         if not crash_status:
             return jsonify({'status': 'The crash status value is required!'}), 403
@@ -125,7 +125,7 @@ def create_app():
     #  Send the luminosity value through MQTT
     @app.route('/light_sensor', methods = ['POST'])
     def light_sensor_feedback():
-        luminosity = request.form['luminosity']
+        luminosity = request.json['luminosity']
 
         if not luminosity:
             return jsonify({'status': 'The luminosity value is required!'}), 403
@@ -146,7 +146,7 @@ def create_app():
         #  We pretend that the sensor measures the refractive index of the
         #  windscreen. Based on its value, the control unit will decide 
         #  whether to demist the windscreen or not.
-        refraction_index = request.form['refraction_index']
+        refraction_index = request.json['refraction_index']
 
         if not refraction_index:
             return jsonify({'status': 'The refraction index value is required!'}), 403

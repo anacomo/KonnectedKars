@@ -59,7 +59,7 @@ def read_data():
 
 def makeWeightSensorRequest(data_weight, verbose=1):
     pload = {'weight' : random.choice(data_weight)}
-    response = requests.post('http://127.0.0.1:8000/weight_sensor', data = pload)
+    response = requests.post('http://127.0.0.1:8000/weight_sensor', json = pload)
     if verbose:
         print(response.text)
     return response.status_code
@@ -67,28 +67,28 @@ def makeWeightSensorRequest(data_weight, verbose=1):
 def makeSpeedDistanceRequest(data_brake, verbose=1):
     spd = random.choice(data_brake)
     pload = {'speed' : spd[0], 'distance' : spd[1]}
-    response = requests.post('http://127.0.0.1:8000/speed_distance_sensor', data = pload)
+    response = requests.post('http://127.0.0.1:8000/speed_distance_sensor', json = pload)
     if verbose:
         print(response.text)
     return response.status_code
 
 def makeCrashSensorRequest(data_damage, verbose=1):
     pload = {'crash_status' : random.choice(data_damage)}
-    response = requests.post('http://127.0.0.1:8000/crash_sensor', data = pload)
+    response = requests.post('http://127.0.0.1:8000/crash_sensor', json = pload)
     if verbose:
         print(response.text)
     return response.status_code
 
 def makeLightSensorRequest(data_lighting, verbose=1):
     pload = {'luminosity' : random.choice(data_lighting)}
-    response = requests.post('http://127.0.0.1:8000/light_sensor', data = pload)
+    response = requests.post('http://127.0.0.1:8000/light_sensor', json = pload)
     if verbose:
         print(response.text)
     return response.status_code
 
 def makeDemistingSensorRequest(data_refraction, verbose=1):
     pload = {'refraction_index' : random.choice(data_refraction)}
-    response = requests.post('http://127.0.0.1:8000/demisting_sensor', data = pload)
+    response = requests.post('http://127.0.0.1:8000/demisting_sensor', json = pload)
     if verbose:
         print(response.text)
     return response.status_code
