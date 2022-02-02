@@ -73,7 +73,7 @@ def read_crash_status():
     
     for l1 in fread:
         l1 = l1.split()
-        data_crash.append(int(l1[2]))
+        data_crash.append(str(l1[2]))
     for l1 in ftest:
         l1 = l1.split()
         test_crash.append(l1[2])
