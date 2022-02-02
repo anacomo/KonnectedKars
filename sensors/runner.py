@@ -101,7 +101,6 @@ def makeRootRequest(verbose=1):
     return response.status_code
 
 def makeRequests(data_brake, data_damage, data_lighting, data_refraction, data_weight):
-
     makeRootRequest()
     makeWeightSensorRequest(data_weight)
     makeSpeedDistanceRequest(data_brake)

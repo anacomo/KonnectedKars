@@ -1,7 +1,7 @@
 import unittest
 import sys
 sys.path.append("..")
-from sensors.runner import *
+import requests
 from reader_prepare import *
 
 class UnitTest(unittest.TestCase):
@@ -13,20 +13,26 @@ class UnitTest(unittest.TestCase):
         self.data_dem, self.test_dem = read_demising_sensor()
     
     def test_app(self):
-        status_code = makeWeightSensorRequest(self.data_weight, 0)
-        self.assertEqual(status_code, 200)
+        pload = {'weight' : random.choice(self.data_weight)}
+        response = requests.post('http://127.0.0.1:8000/weight_sensor', json = pload)
+        self.assertEqual(response.status_code, 200)
 
-        status_code = makeSpeedDistanceRequest(self.data_brake, 0)
-        self.assertEqual(status_code, 200)
+        spd = random.choice(self.data_brake)
+        pload = {'speed' : spd[0], 'distance' : spd[1]}
+        response = requests.post('http://127.0.0.1:8000/speed_distance_sensor', json = pload)
+        self.assertEqual(response.status_code, 200)
 
-        status_code = makeCrashSensorRequest(self.data_crash, 0)
-        self.assertEqual(status_code, 200)
+        pload = {'crash_status' : random.choice(self.data_crash)}
+        response = requests.post('http://127.0.0.1:8000/crash_sensor', json = pload)
+        self.assertEqual(response.status_code, 200)
 
-        status_code = makeLightSensorRequest(self.data_light, 0)
-        self.assertEqual(status_code, 200)
+        pload = {'luminosity' : random.choice(self.data_light)}
+        response = requests.post('http://127.0.0.1:8000/light_sensor', json = pload)
+        self.assertEqual(response.status_code, 200)
 
-        status_code = makeDemistingSensorRequest(self.data_dem, 0)
-        self.assertEqual(status_code, 200)
+        pload = {'refraction_index' : random.choice(self.data_dem)}
+        response = requests.post('http://127.0.0.1:8000/demisting_sensor', json = pload)
+        self.assertEqual(response.status_code, 200)
 
         pload = {'weight' : None}
         response = requests.post('http://127.0.0.1:8000/weight_sensor', json = pload)

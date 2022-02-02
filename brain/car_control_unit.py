@@ -6,6 +6,7 @@
 '''
 
 from tokenize import Double
+import json
 
 
 class CarControlUnit:
@@ -15,15 +16,43 @@ class CarControlUnit:
         self.emergency_phone_number = '0666666666'  #  TODO: replace with the actual number
         self.road_lights_state = 'Off'
         self.demisting_mechanism_state = 'Off'
+        self.speed = None
+        self.distance = None
+        self.state_json = {}
+        with open('../data/state.json', 'w') as json_file:
+            json.dump(self.state_json, json_file)
 
     def set_ambiental_lights_state(self, state):
         self.ambiental_lights_state = state
+        with open('../data/state.json', 'r') as json_file:
+            data = json.load(json_file)
+        data['ambiental_lights'] = self.ambiental_lights_state
+        with open('../data/state.json', 'w') as json_file:
+            json.dump(data, json_file)
 
     def set_road_lights_state(self, state):
         self.road_lights_state = state
+        with open('../data/state.json', 'r') as json_file:
+            data = json.load(json_file)
+        data['road_lights'] = self.ambiental_lights_state
+        with open('../data/state.json', 'w') as json_file:
+            json.dump(data, json_file)
 
     def set_demisting_mechanism_state(self, state):
         self.demisting_mechanism_state = state
+        with open('../data/state.json', 'r') as json_file:
+            data = json.load(json_file)
+        data['demisting_mechanism'] = self.demisting_mechanism_state
+        with open('../data/state.json', 'w') as json_file:
+            json.dump(data, json_file)
+
+    def set_speed_value(self, speed):
+        self.speed = speed
+        with open('../data/state.json', 'r') as json_file:
+            data = json.load(json_file)
+        data['speed'] = self.speed
+        with open('../data/state.json', 'w') as json_file:
+            json.dump(data, json_file)
 
     def handle_message(self, message):
         #  How the message should look depending on the sensor that
@@ -65,11 +94,13 @@ class CarControlUnit:
                 print('Am stins luminile ambientale! Se aprind doar pentru domnisoare\n')
         elif message[1] == '2':
             data = message[4:].split()
-            speed = float(data[0]) * 10 / 36 #transform speed in m/s not km/h
-            distance = float(data[1])
-            if distance/speed < 5:
+            self.speed = float(data[0]) * 10 / 36 #transform speed in m/s not km/h
+            self.distance = float(data[1])
+            if self.distance/self.speed < 5:
+                self.set_speed_value(0.001)
                 print("Am pus frana (Alexandra nu mai pupa Masseratiuri)\n")
             else:
+                self.set_speed_value(self.speed)
                 print("O lasam pe Alexandra sa puna frana, vedem cum se descurca\n")
         elif message[1] == '3':
             crashStatus = True if message[-1] == '1' else False
