@@ -68,7 +68,10 @@ def create_app():
     #  The saying goes that app never works without hello world.
     @app.route('/')
     def hello_world():
-        return 'Hello World!'
+
+        message = '[6] '
+        publish_message(client, message)
+        return 'Hello World! New calls have been done!\n'
     
     #  We receive feedback from the weight sensor.
     #  Send the weight value as a message through MQTT.
@@ -163,4 +166,3 @@ def create_app():
 
 if __name__ == '__main__':
     create_app().run(threaded=True, port=8000)
-    #sensors_runner.makeRequests()

@@ -4,6 +4,7 @@
 from random import choice, weibullvariate
 import requests
 import random
+import time
 
 from scipy import rand
 
@@ -93,9 +94,15 @@ def makeDemistingSensorRequest(data_refraction, verbose=1):
         print(response.text)
     return response.status_code
 
+def makeRootRequest(verbose=1):
+    response = requests.get('http://127.0.0.1:8000/')
+    if verbose:
+        print(response.text)
+    return response.status_code
 
 def makeRequests(data_brake, data_damage, data_lighting, data_refraction, data_weight):
 
+    makeRootRequest()
     makeWeightSensorRequest(data_weight)
     makeSpeedDistanceRequest(data_brake)
     makeCrashSensorRequest(data_damage)
@@ -104,4 +111,6 @@ def makeRequests(data_brake, data_damage, data_lighting, data_refraction, data_w
 
 if __name__ == '__main__':
     data_brake, data_damage, data_lighting, data_refraction, data_weight = read_data()
-    makeRequests(data_brake, data_damage, data_lighting, data_refraction, data_weight)
+    while True:
+        makeRequests(data_brake, data_damage, data_lighting, data_refraction, data_weight)
+        time.sleep(5)

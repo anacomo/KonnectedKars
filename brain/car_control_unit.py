@@ -59,45 +59,46 @@ class CarControlUnit:
             weight = float(message[4:])
             if weight < 60:
                 self.set_ambiental_lights_state('On')
-                print('Am pornit luminile ambientale! Fitza')
+                print('Am pornit luminile ambientale! Fitza\n')
             else:
                 self.set_ambiental_lights_state('Off')
-                print('Am stins luminile ambientale! Se aprind doar pentru domnisoare')
+                print('Am stins luminile ambientale! Se aprind doar pentru domnisoare\n')
         elif message[1] == '2':
-            #  TODO: implement this
             data = message[4:].split()
             speed = float(data[0]) * 10 / 36 #transform speed in m/s not km/h
             distance = float(data[1])
             if distance/speed < 5:
-                print("Am pus frana (Alexandra nu mai pupa Masseratiuri)")
+                print("Am pus frana (Alexandra nu mai pupa Masseratiuri)\n")
             else:
-                print("O lasam pe Alexandra sa puna frana, vedem cum se descurca")
+                print("O lasam pe Alexandra sa puna frana, vedem cum se descurca\n")
         elif message[1] == '3':
-            #  TODO: implement this
             crashStatus = bool(message[4:])
             if crashStatus == True:
                 #TODO call to emergency number
-                print("Masina a avut un accident")
+                print("Masina a avut un accident\n")
             else:
-                print("Masina este in stare buna")
+                print("Masina este in stare buna\n")
         elif message[1] == '4':
             lighting_coef = float(message[4:])
             if lighting_coef < 0.4:
                 self.set_road_lights_state('On')
-                print('Am aprins farurile.')
+                print('Am aprins farurile.\n')
             else:
                 self.set_road_lights_state('Off')
-                print('Am stins farurile.')
+                print('Am stins farurile.\n')
         elif message[1] == '5':
             refraction_index = float(message[4:])
             if refraction_index > 1.90:
                 self.set_demisting_mechanism_state('On')
-                print('Am pornit dezaburirea.')
+                print('Am pornit dezaburirea.\n')
             elif refraction_index >= 1.45:
                 self.set_demisting_mechanism_state('Off')
-                print('Am stins dezaburirea.')
+                print('Am stins dezaburirea.\n')
             else:
-                print('Impossible. What did the demisting sensor smoke?')
+                print('Impossible. What did the demisting sensor smoke?\n')
+        elif message[1] == '6':
+            print("\n-----------------------------------------\n")
+            print("New request\n")
         else:
             print('Error :(')
 
