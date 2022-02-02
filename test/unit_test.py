@@ -38,4 +38,35 @@ class UnitTest(unittest.TestCase):
         status_code = makeDemistingSensorRequest(self.data_dem, 0)
         self.assertEqual(status_code, 200)
 
+# ----------- FAILURES ---------------------
+
+    def test_failure_ambient_lights_status(self):
+        pload = {'weight' : None}
+        response = requests.post('http://127.0.0.1:8000/weight_sensor', json = pload)
+        status_code = response.status_code
+        self.assertEqual(status_code, 403)
+   
+    def test_failure_speed_distance_status(self):
+        pload = {'speed' : None, 'distance' : None}
+        response = requests.post('http://127.0.0.1:8000/speed_distance_sensor', json = pload)
+        status_code = response.status_code
+        self.assertEqual(status_code, 403)
+
+    def test_failure_crash_sensor(self):
+        pload = {'crash_status' : None}
+        response = requests.post('http://127.0.0.1:8000/crash_sensor', json = pload)
+        status_code = response.status_code
+        self.assertEqual(status_code, 403)
+
+    def test_failure_light_sensor(self):
+        pload = {'luminosity' : None}
+        response = requests.post('http://127.0.0.1:8000/light_sensor', json = pload)
+        status_code = response.status_code
+        self.assertEqual(status_code, 403)
+
+    def test_failure_demisting_sensor(self):
+        pload = {'refraction_index' : None}
+        response = requests.post('http://127.0.0.1:8000/demisting_sensor', json = pload)
+        status_code = response.status_code
+        self.assertEqual(status_code, 403)
     

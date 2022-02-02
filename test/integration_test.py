@@ -12,17 +12,43 @@ class UnitTest(unittest.TestCase):
         self.data_light, self.test_light = read_light_sensor()
         self.data_dem, self.test_dem = read_demising_sensor()
     
-    def test_ambiental_val(self):
-        pass
+    def test_app(self):
+        status_code = makeWeightSensorRequest(self.data_weight, 0)
+        self.assertEqual(status_code, 200)
 
-    def test_speed(self):
-        pass
+        status_code = makeSpeedDistanceRequest(self.data_brake, 0)
+        self.assertEqual(status_code, 200)
 
-    def test_crash(self):
-        pass
+        status_code = makeCrashSensorRequest(self.data_crash, 0)
+        self.assertEqual(status_code, 200)
 
-    def test_light(self):
-        pass
+        status_code = makeLightSensorRequest(self.data_light, 0)
+        self.assertEqual(status_code, 200)
 
-    def test_refraction(self):
-        pass
+        status_code = makeDemistingSensorRequest(self.data_dem, 0)
+        self.assertEqual(status_code, 200)
+
+        pload = {'weight' : None}
+        response = requests.post('http://127.0.0.1:8000/weight_sensor', json = pload)
+        status_code = response.status_code
+        self.assertEqual(status_code, 403)
+
+        pload = {'speed' : None, 'distance' : None}
+        response = requests.post('http://127.0.0.1:8000/speed_distance_sensor', json = pload)
+        status_code = response.status_code
+        self.assertEqual(status_code, 403)
+
+        pload = {'crash_status' : None}
+        response = requests.post('http://127.0.0.1:8000/crash_sensor', json = pload)
+        status_code = response.status_code
+        self.assertEqual(status_code, 403)
+
+        pload = {'luminosity' : None}
+        response = requests.post('http://127.0.0.1:8000/light_sensor', json = pload)
+        status_code = response.status_code
+        self.assertEqual(status_code, 403)
+
+        pload = {'refraction_index' : None}
+        response = requests.post('http://127.0.0.1:8000/demisting_sensor', json = pload)
+        status_code = response.status_code
+        self.assertEqual(status_code, 403)
