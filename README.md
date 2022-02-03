@@ -203,6 +203,96 @@ See the [open issues](https://github.com/anacomo/KonnectedKars/issues) for a ful
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+## HTTP Connection
+
+For the HTTP connection, we are using the [`Flask`](https://flask.palletsprojects.com/en/2.0.x/) library.
+
+## Server API
+
+The Server is exposing an API with a HTTP connection. 
+
+Main routes of the API are:
+
+* `/weight_sensor`
+* `/speed_distance_sensor`
+* `/crash_sensor`
+* `/light_sensor`
+* `/demisting_sensor`
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## MQTT Connection
+
+### Server
+
+We will use an online, free of charge MQTT broker: [Emqx Public Broker](https://www.emqx.com/en/mqtt/public-mqtt5-broker).
+
+The server acts as the central main place for business logic.
+
+For communication with othe sensors MQTT protocol is used, particularly package `paho-mqtt` from python
+
+### Server Logic
+
+The server is regularly trying to communicate with the seonsors by cheking the MQTT channels.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## Unit testing
+For unit testing we used the python library `unittest`. To run the tests, execute the commands:
+```
+python3 -m unittest unit-test
+```
+
+## Integration testing
+This test works using the same `unittest` library and can be executed with `python3 -m unittest integration-test`. We wrote more comprehensive integration tests in the `integration-test.py` file. 
+
+## Bug identification
+
+As recommended, we used the Microsoft [Restler](https://github.com/microsoft/restler-fuzzer) tool with the following output
+
+```
+Starting task Test...
+Using python: 'python3' (Python 3.10.2)
+Request coverage (successful / total): 7 / 7
+No bugs were found.
+Task Test succeeded.
+Collecting logs...
+```
+
+
+To reproduce, follow these stepts:
+
+1. Install .NET 5.0 from [here](https://docs.microsoft.com/en-us/dotnet/core/install/linux?WT.mc_id=dotnet-35129-website)
+
+2. Download the official repo
+```sh
+git clone https://github.com/microsoft/restler-fuzzer.git && cd restler-fuzzer
+```
+
+3. Create the folder for the Restler binaries
+```sh
+mkdir ../restler_bin
+```
+
+4. Build the Restler project
+```sh
+python3 ./build-restler.py --dest_dir ../restler_bin
+```
+
+5. Compile it
+```sh
+cd ../restler_bin
+dotnet ./restler/Restler.dll compile --api_spec ../KonnectedKars/openapi.json
+```
+
+6. Run it
+```sh
+cd Compile
+dotnet ./restler/Restler.dll test --grammar_file grammar.py --dictionary_file dict.json --settings engine_settings.json --no_ssl
+```
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 <!-- CONTRIBUTING -->
 ## Contributing
 
@@ -240,14 +330,20 @@ Project Link: [https://github.com/anacomo/KonnectedKars](https://github.com/anac
 
 Resources used:
 
-* [Flask Tutorial](https://flask.palletsprojects.com/en/2.0.x/tutorial/)
-* [MQTT Tutorial](https://mqtt.org/)
+* [Flask library](https://flask.palletsprojects.com/en/2.0.x/tutorial/)
+* [paho-mqtt library](https://mqtt.org/)
+* [free broker](https://www.emqx.com/en/mqtt/public-mqtt5-broker)
 * [README Template](https://github.com/othneildrew/Best-README-Template)
 * [Postman](https://www.postman.com/)
 * [Twilio](https://www.twilio.com/login?g=%2Fconsole%2Fgate%3F&t=8b2a075839e7172cc38215f7b3e40bd6d82efda23afdc3fc0642e9b08271a400)
+* [Microsoft RESTler](https://www.microsoft.com/en-us/research/publication/restler-stateful-rest-api-fuzzing/)
+* [python unittest library]
+
+Specs:
+* OpenAPI Spec: [OpenAPI](../openapi.json)
+* AsyncAPI Spec: [AsyncAPI](../asyncapi.yaml)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
