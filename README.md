@@ -26,6 +26,30 @@ Pentru puncte:
 - [X] Integration tests +1p
 - [X] Coverage al testelor de 80%+ 0.5p
 
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/anacomo/KonnectedKars">
+    <img src="Tesla.jpg" alt="Logo" width="200" height="200">
+  </a>
+
+  <h3 align="center">SmartSleep API</h3>
+
+  <p align="center">
+    An IoT program for a smart bed device. 
+    <br />
+    <a href="https://docs.google.com/document/d/1VP0sfX9SmfXIrkstNCi3iEgfoAUV0fd1uXmyn17H-WI/edit"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <p>
+    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+  </p>
+  <br/>
+</div>
+
+
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
