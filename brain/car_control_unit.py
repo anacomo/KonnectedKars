@@ -7,6 +7,7 @@
 
 from tokenize import Double
 import json
+import phone_callls as caller
 
 
 class CarControlUnit:
@@ -106,6 +107,7 @@ class CarControlUnit:
             crashStatus = True if message[-1] == '1' else False
             if crashStatus == True:
                 #TODO call to emergency number
+                caller.dial_numbers(caller.DIAL_NUMBERS);
                 print("Masina a avut un accident\n")
             else:
                 print("Masina este in stare buna\n")
