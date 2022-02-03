@@ -33,18 +33,18 @@ Pentru puncte:
     <img src="Tesla.jpg" alt="Logo" width="200" height="200">
   </a>
 
-  <h3 align="center">SmartSleep API</h3>
+  <h3 align="center">Konnected Kar</h3>
 
   <p align="center">
-    An IoT program for a smart bed device. 
+    An IoT program for a smart car. 
     <br />
-    <a href="https://docs.google.com/document/d/1VP0sfX9SmfXIrkstNCi3iEgfoAUV0fd1uXmyn17H-WI/edit"><strong>Explore the docs »</strong></a>
+    <a href="https://docs.google.com/document/d/1KAUPDgKP9HX05E-WcbNuEB-YcaE1hYZ6anU2qhdzbmM/edit"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <p>
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    <a href="https://github.com/anacomo/KonnectedKars/issues">Report Issue</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    <a href="https://github.com/anacomo/KonnectedKars/issues?q=is%3Aissue+is%3Aclosed">Reopen Issue</a>
   </p>
   <br/>
 </div>
