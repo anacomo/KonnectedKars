@@ -160,10 +160,9 @@ pythn3 /sensors/runner.py
     ```
 
 3. Crash Sensor: 
-    - wake up mode
-      ```shell script
-       POST http://127.0.0.1:8000/crash_sensor
-      ```
+    ```shell script
+    POST http://127.0.0.1:8000/crash_sensor
+    ```
    
 4. Light Sensor:
     ```shell script 
