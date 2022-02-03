@@ -25,3 +25,32 @@ Pentru puncte:
 - [X] Utilizarea unui tool de testare automată (gen RESTler) pentru a identifica buguri. +1.5p
 - [X] Integration tests +1p
 - [X] Coverage al testelor de 80%+ 0.5p
+
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#analysis-document">Analisys document</a></li>
+        <li><a href="#interpretation-and-prioritization-of-requirements">Interpretation and prioritization of requirements</a> </li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#run-the-project">Run the project</a></li>
+        <li><a href="#usage">Usage</a></li>
+      </ul>
+    </li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
