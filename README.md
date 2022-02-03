@@ -78,3 +78,25 @@ Pentru puncte:
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
+
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+"Konnected Kars" enables its drivers to experience first-rate driving assistance tools that guarantee safe and enjoyable rides . It's not just a product, it's a lifestyle that helps drivers to keep up with the challenges of modern times. Worn out after a day in the rat race at work? No need to worry, our smart car has got you covered. Want to impress the girl of your dreams with a romantic urban gateaway? Count on us. Driving has never been more pleasant. Konnected Kars.inc
+
+### Built With
+
+Major frameworks/libraries used to bootstrap KonnectedKars project:
+
+* [Flask](https://flask.palletsprojects.com/en/2.0.x/)
+* [Python](https://www.python.org/)
+
+### Analysis document
+Visit it [here.](https://docs.google.com/document/d/1KAUPDgKP9HX05E-WcbNuEB-YcaE1hYZ6anU2qhdzbmM/edit)
+
+### Interpretation and prioritization of requirements
+* [labels & grouping](https://github.com/anacomo/KonnectedKars/issues)
+* [planning poker & MoSCoW Prioritization](https://github.com/anacomo/KonnectedKars/projects/2)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
