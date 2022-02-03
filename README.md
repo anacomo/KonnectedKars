@@ -251,29 +251,31 @@ As recommended, we used the Microsoft [Restler](https://github.com/microsoft/res
 
 ```
 Starting task Test...
-Using python: 'python3' (Python 3.10.2)
-Request coverage (successful / total): 7 / 7
+Using python: 'python.exe' (Python 3.10.2)
+Request coverage (successful / total): 6 / 6
 No bugs were found.
 Task Test succeeded.
 Collecting logs...
 ```
 
 
-To reproduce, follow these stepts:
 
-1. Install .NET 5.0 from [here](https://docs.microsoft.com/en-us/dotnet/core/install/linux?WT.mc_id=dotnet-35129-website)
+To reproduce, we followed these steps:
 
-2. Download the official repo
+1. Installed .NET 5.0
+
+2. Downloaded the official repo
 ```sh
-git clone https://github.com/microsoft/restler-fuzzer.git && cd restler-fuzzer
+git clone https://github.com/microsoft/restler-fuzzer.git
+cd restler-fuzzer
 ```
 
-3. Create the folder for the Restler binaries
+3. Created the folder for the Restler binaries
 ```sh
 mkdir ../restler_bin
 ```
 
-4. Build the Restler project
+4. Built the Restler project
 ```sh
 python3 ./build-restler.py --dest_dir ../restler_bin
 ```
@@ -281,13 +283,14 @@ python3 ./build-restler.py --dest_dir ../restler_bin
 5. Compile it
 ```sh
 cd ../restler_bin
-dotnet ./restler/Restler.dll compile --api_spec ../KonnectedKars/openapi.json
+.\restler.exe compile --api_spec "C:\Facultate\Anul 3 Semestrul 1\KonnectedKars\openapi.json"
 ```
 
 6. Run it
 ```sh
 cd Compile
-dotnet ./restler/Restler.dll test --grammar_file grammar.py --dictionary_file dict.json --settings engine_settings.json --no_ssl
+
+..\restler.exe test --grammar_file .\grammar.py --dictionary_file .\dict.json --settings engine_settings.json --no_ssl
 ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
